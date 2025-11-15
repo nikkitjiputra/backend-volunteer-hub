@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+import os
 from pymongo import MongoClient
 
 # Replace with your MongoDB connection string
-MONGODB_URL = "mongodb://localhost:27017" 
 DATABASE_NAME = "volunteer-hub"
-
+MONGODB_URL = os.environ.get("MONGO_URI")
 client = MongoClient(MONGODB_URL)
 database = client[DATABASE_NAME]
 collection = database["opportunities"]
